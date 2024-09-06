@@ -1,20 +1,22 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
+import { useNavigate } from 'react-router-dom';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector((state) => state.cart.items); // Get cart items from Redux store
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   // Calculate the total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => total + item.cost * item.quantity, 0).toFixed(2);
   };
 
   // Handle continue shopping action
-  const handleContinueShopping = (e) => {
-    onContinueShopping();
+  const handleContinueShopping = () => {
+    navigate('/ProductList');
   };
 
   // Handle increment of item quantity
@@ -40,7 +42,7 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
     return (item.cost * item.quantity).toFixed(2);
-  };
+  }
 
   // Placeholder function for checkout action
   const handleCheckoutShopping = (e) => {
