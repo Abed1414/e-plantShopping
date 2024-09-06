@@ -13,8 +13,8 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   // Handle continue shopping action
-  const handleContinueShopping = () => {
-    window.location.assign('/ProductList');
+  const handleContinueShopping = (e) => {
+    onContinueShopping();
   };
 
   // Handle increment of item quantity
@@ -40,7 +40,7 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
     return (item.cost * item.quantity).toFixed(2);
-  }
+  };
 
   // Placeholder function for checkout action
   const handleCheckoutShopping = (e) => {
